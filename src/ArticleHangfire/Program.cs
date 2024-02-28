@@ -15,6 +15,8 @@ builder.Services.Configure<HttpJobOptions>(
 builder.Services.AddHttpClient();
 builder.Services.AddTransient<HttpJobRunner>();
 
+builder.Services.AddHostedService<HttpJobHostedService>();
+
 var app = builder.Build();
 
 app.MapGet("/api/is-alive", () => "I'm alive!");
