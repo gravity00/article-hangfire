@@ -1,3 +1,4 @@
+using Hangfire;
 using Hangfire.Server;
 using Microsoft.Extensions.Options;
 
@@ -11,10 +12,13 @@ public class HttpJobRunner(
 {
     private HttpJobOptions Options => options.CurrentValue;
 
+    [JobDisplayName("HTTP:{0}:{1}")]
+    [EnableDistributedMutex("HTTP:{0}:{1}", 15)]
+    [AutomaticRetry(OnAttemptsExceeded = AttemptsExceededAction.Delete, Attempts = 0)]
     public async Task RunAsync(string category, string name, PerformContext ctx)
     {
         using var _ = logger.BeginScope(
-            "Category:{Category} Name:'{Name}' JobId:'{JobId}'",
+            "Category:{Category} Name:{Name} JobId:{JobId}",
             category,
             name,
             ctx.BackgroundJob.Id
