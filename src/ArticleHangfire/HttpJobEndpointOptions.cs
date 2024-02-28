@@ -13,4 +13,6 @@ public class HttpJobEndpointOptions
     public IReadOnlyDictionary<string, string> Headers { get; init; }
 
     public TimeSpan? Timeout { get; init; }
+
+    public bool IgnoreInvalidStatusCode { get; init; }
 }
