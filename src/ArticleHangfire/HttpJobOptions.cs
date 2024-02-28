@@ -6,6 +6,6 @@ public class HttpJobOptions
 
     public IReadOnlyDictionary<
         string, 
-        IReadOnlyDictionary<string, HttpEndpointJobOptions>
+        IReadOnlyDictionary<string, HttpJobEndpointOptions>
     > Endpoints { get; init; }
 }

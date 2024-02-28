@@ -1,6 +1,6 @@
 namespace ArticleHangfire;
 
-public class HttpEndpointJobOptions
+public class HttpJobEndpointOptions
 {
     public string Cron { get; init; }
 
